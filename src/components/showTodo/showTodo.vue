@@ -2,7 +2,7 @@
     <div v-for="(item , index) in todo.listTodo" :key="index" 
     class="d-flex flex-column">
         <div class="d-flex show-todo p-4 r-12 shadow">
-            <router-link :to="`/Todo/${item}`" 
+            <router-link :to="`/Todo/${index}`" 
             class="f14-400">
                     {{ item.name }}
             </router-link>
@@ -14,7 +14,7 @@
 <script setup lang="ts">
     // import stores
     import { useTodoList } from '@/stores/Todo';
-    
+
     // create variable
     const todo = useTodoList()
 </script>

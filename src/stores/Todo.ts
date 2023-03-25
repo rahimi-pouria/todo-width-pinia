@@ -6,7 +6,12 @@ export const useTodoList = defineStore('Todo', () => {
     let getValue = ''
 
   // create array of object
-  const listTodo = ref<string[{}]>([])
+  const listTodo = ref<string[{}]>([{
+    id: 1,
+    name: 'pouria',
+    icon: './assets/svg/trash.png' ,
+    description: ''
+  }])
 
 
   // functions
@@ -35,13 +40,13 @@ export const useTodoList = defineStore('Todo', () => {
 
   // Get Single Item
   const singleTodo = (payload: number) => {
-    return listTodo.value.find((item: string, index: number) => { return index == payload })
+    return listTodo.value.find((item: string,  index: number) => { return index == payload })
   }
 
 // update
 
 const updateTodo = (newData: string, itemIndex: number) => {
-  const findedIndex = listTodo.value.findIndex((item: ITodoItem, index) => { return index == itemIndex })
+  const findedIndex = listTodo.value.findIndex((index:any) => { return index == itemIndex })
   listTodo.value[findedIndex] = newData
 }
 

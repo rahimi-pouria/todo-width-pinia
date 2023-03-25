@@ -1,11 +1,12 @@
 <template>
     <div class="container col-md-6 col-sm-12 d-flex flex-column g18">
-        <h2 class="f18-400">
+        <h2 class="f18-400 g16 d-flex justify-content-end">
             {{ route.params.detail }}
+            <span class="f16-400">: جزییات شماره</span>
         </h2>
         <div class="d-flex flex-column g16">
-            <input type="text" class="form-control" v-model="editTitle" placeholder="edit Title">
-            <input type="text" class="form-control" v-model="editDescription" placeholder="edit Description">
+            <input type="text" class="form-control" v-model="singleItem.name">
+            <input type="text" class="form-control" v-model="singleItem.description">
             <button class="btn btn-Show-Item" @click="uopdateTodo">edit Todo</button>
         </div>
     </div>
@@ -16,23 +17,18 @@
     import { useRoute, useRouter } from 'vue-router';
     import { ref } from 'vue';
     import { useTodoList } from '@/stores/Todo';
+import router from '@/router';
 
     const route = useRoute()
     const detailTodo = useTodoList()
 
-    let editTitle = ''
-    let editDescription = ''
-
-    const singleItem = ref<string>({})
-    singleItem.value = detailTodo.singleTodo(route.params.derail as any)
-    
-    const editItem = () => {
-        detailTodo
-    }
+    const singleItem = ref([])
+    singleItem.value = detailTodo.singleTodo(route.params.detail as any)
+    console.log(singleItem.value)
 
     const uopdateTodo = () => {
-        console.log(editTitle)
-        console.log(editDescription)
+        detailTodo.updateTodo(singleItem.value, route.params.detail as any)
+        router.push('/ListTodo')
     }
 </script>
 
