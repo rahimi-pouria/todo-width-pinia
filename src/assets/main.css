@@ -77,6 +77,12 @@ a{
 a{
   color: #fff !important;
 }
+input{
+  background: #252c3f;
+  border: 1px solid #2e4d7b;
+  text-align: center;
+  color: #fff;
+}
 /* responsive */
 @media only screen and (max-width:600px){
   .container-navbar {

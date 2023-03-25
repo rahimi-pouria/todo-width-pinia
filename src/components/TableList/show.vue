@@ -10,7 +10,7 @@
             <tr class="d-flex text-right g32 p-4 shadow justify-content-between" v-for="(item, i) in tableTodo.listTodo" :key="i">
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
-                <td class="w-18">{{ item.description }}</td>
+                <td class="">{{ item.description }}</td>
             </tr>
         </table>
     </div>

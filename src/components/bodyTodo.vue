@@ -1,15 +1,26 @@
 <template>
     <div class="d-flex flex-column g16 r-12">
-        <input type="text" class="form-control" placeholder="search todo">
+        <!-- if for show text no data  -->
+
+        <div v-if="addTodo.addTodo.length > 0" class="d-flex">
+            <p class="f16-400">
+                // no todo
+            </p>
+        </div>
+
         <!-- component show todo -->
-        <div class="d-flex flex-column g6">
+        <div v-else class="d-flex flex-column g6">
             <showTodo />
         </div>
         <!-- search and envent add todo  -->
-        <div class="d-flex w-100 search-todo">
+        <div class="d-flex w-100 search-todo g16">
             <input type="text" class="form-control w-65"
              placeholder="add todo"
              v-model="itemTodo"
+             >
+             <input type="text" class="form-control w-65"
+             placeholder="add description todo"
+             v-model="descTodo"
              >
             <!-- btn evebt add todo -->
             <button class="btn-add-todo w-30"
@@ -25,16 +36,15 @@
     import showTodo from './showTodo/showTodo.vue'
     // import stores
     import { useTodoList } from '@/stores/Todo';
-import router from '@/router';
     const addTodo = useTodoList()
     const itemTodo = ref('')
-
+    const descTodo = ref('')
     // function add item
 
     const addItemTodo = () => {
-        console.log('add')
-        addTodo.addTodo(itemTodo.value)
+        addTodo.addTodo(itemTodo.value,  descTodo.value)
     }
+
 </script>
 
 <style scoped>
