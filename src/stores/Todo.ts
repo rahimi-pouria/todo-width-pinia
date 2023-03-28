@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+// interface type todo list 
 export interface todoList {
   name: string,
   icon: string,
