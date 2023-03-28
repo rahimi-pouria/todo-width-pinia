@@ -12,19 +12,26 @@
         <div v-else class="d-flex flex-column g6">
             <showTodo />
         </div>
-        <!-- search and envent add todo  -->
+        <!-- form validation add todo   -->
         <div class="d-flex w-100 search-todo g16">
-            <input type="text" class="form-control w-65"
-             placeholder="add todo"
-             v-model="itemTodo"
-             >
-             <input type="text" class="form-control w-65"
-             placeholder="add description todo"
-             v-model="descTodo"
-             >
-            <!-- btn evebt add todo -->
-            <button class="btn-add-todo w-30"
-             @click="addItemTodo">add todo</button>
+            <form @submit.prevent="addItemTodo" class="w-100 d-flex">
+                <div class="form-group">
+                    <input type="text" class="form-control w-100"
+                    placeholder="add todo"
+                    v-model="itemTodo"
+                    >
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control w-100"
+                    placeholder="add description todo"
+                    v-model="descTodo"
+                    >
+                </div>
+            <!-- btn form validation -->
+            <button class="btn-add-todo w-30">
+             add todo
+            </button>
+            </form>
         </div>
     </div>
 </template>
@@ -33,16 +40,22 @@
 // import ref and reactive 
     import { ref } from 'vue'
 // import components
-    import showTodo from './showTodo/showTodo.vue'
+    import showTodo from './showTodo.vue';
     // import stores
     import { useTodoList } from '@/stores/Todo';
     const addTodo = useTodoList()
-    const itemTodo = ref('')
-    const descTodo = ref('')
+    let itemTodo = ref('')
+    let descTodo = ref('')
     // function add item
 
     const addItemTodo = () => {
-        addTodo.addTodo(itemTodo.value,  descTodo.value)
+        if(itemTodo.value === '' && descTodo.value === '') {
+            alert('پر کردن فیلدها الزامی می باشد')
+        }else {
+            addTodo.addTodo(itemTodo.value,  descTodo.value)
+            itemTodo.value = ''
+            descTodo.value = ''
+        }
     }
 
 </script>
@@ -67,5 +80,8 @@
     .search-todo{
         justify-content: space-between;
         padding-top: 15px;
+    }
+    .show-alert {
+        display: none !important;
     }
 </style>

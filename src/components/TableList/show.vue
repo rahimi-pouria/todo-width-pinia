@@ -3,12 +3,10 @@
         <!-- create table  -->
         <table class="d-flex flex-column w-100 g16 justify-content-end">
             <tr class="d-flex text-right g32 p-4 shadow justify-content-between">
-                <th>ردیف</th>
                 <th>نام</th>
                 <th>توضیحات</th>
             </tr>
             <tr class="d-flex text-right g32 p-4 shadow justify-content-between" v-for="(item, i) in tableTodo.listTodo" :key="i">
-                <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td class="">{{ item.description }}</td>
             </tr>

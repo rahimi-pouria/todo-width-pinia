@@ -16,13 +16,13 @@
 <script setup lang="ts">
     import { useRoute, useRouter } from 'vue-router';
     import { ref } from 'vue';
-    import { useTodoList } from '@/stores/Todo';
-import router from '@/router';
+    import { useTodoList, type todoList } from '@/stores/Todo';
+    import router from '@/router';
 
     const route = useRoute()
     const detailTodo = useTodoList()
 
-    const singleItem = ref([])
+    const singleItem = ref<todoList>({} as todoList)
     singleItem.value = detailTodo.singleTodo(route.params.detail as any)
     console.log(singleItem.value)
 

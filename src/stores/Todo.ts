@@ -1,37 +1,35 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+export interface todoList {
+  name: string,
+  icon: string,
+  description: string
+}
+
 export const useTodoList = defineStore('Todo', () => {
-  // create variable 
-    let getValue = ''
 
   // create array of object
-  const listTodo = ref<string[{}]>([{
-    id: 1,
-    name: 'pouria',
-    icon: './assets/svg/trash.png' ,
-    description: ''
-  }])
+  const listTodo = ref<todoList[]>([] as todoList[])
 
 
   // functions
 
-  // add and description todo functio
+  // add description todo function
 
   function addTodo(item: string, desc: string) {
     listTodo.value.push(
-      {id: 5 , name: item, icon: './assets/svg/trash.png' , description: desc}
+      {name: item, icon: './assets/svg/trash.png' , description: desc}
       )
-      getValue = ''
   }
 
   // edit todo function
-
   function editTodoName(item: string, desc: string) {
     listTodo.value.push(
-      {id: 5 , name: item, icon: './assets/svg/trash.png' , description: desc}
+      {name: item, icon: './assets/svg/trash.png' , description: desc}
     )
   }
+
   // remove todo function
 
   function removeTodo(index: number) {
@@ -40,23 +38,21 @@ export const useTodoList = defineStore('Todo', () => {
 
   // Get Single Item
   const singleTodo = (payload: number) => {
-    return listTodo.value.find((item: string,  index: number) => { return index == payload })
+    return listTodo.value.find((item: todoList,  index: number) => { return index == payload })
   }
 
-// update
 
-const updateTodo = (newData: string, itemIndex: number) => {
+// update
+const updateTodo = (newData: todoList, itemIndex: number) => {
   const findedIndex = listTodo.value.findIndex((index:any) => { return index == itemIndex })
   listTodo.value[findedIndex] = newData
 }
 
 // return function and array .....
-
   return {
            listTodo,
             addTodo,
             removeTodo,
-            getValue,
             editTodoName,
             singleTodo,
             updateTodo
